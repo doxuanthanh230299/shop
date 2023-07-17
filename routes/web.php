@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\Category\CategoryController;
+use App\Http\Controllers\Admin\Product\ProductController;
+use App\Http\Controllers\Admin\User\UserController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +22,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', [TestController::class, "test"]);
+
 Route::get('/login', function () {
     return view('login');
 });
@@ -26,28 +33,38 @@ Route::post('/login', function () {
 });
 
 Route::group(["prefix" => "/admin"], function () {
-    Route::get("/", function () {
-        return view('admin');
-    });
+    Route::get("/", [AdminController::class, "index"]);
     Route::get("/logout", function () {
         return view('logout');
     });
     Route::group(["prefix" => "/product"], function () {
-        Route::get("/", function () {
-            return view('index');
+        Route::get("/", [ProductController::class, "index"]);
+        Route::get("/create", [ProductController::class, "create"]);
+        Route::post("/post", [ProductController::class, "store"]);
+        Route::get("/edit", [ProductController::class, "edit"]);
+        Route::post("/update", [ProductController::class, "update"]);
+        Route::get("/delete", function () {
+            return view('delete');
         });
-        Route::get("/create", function () {
-            return view('create');
+    });
+
+    Route::group(["prefix" => "/user"], function () {
+        Route::get("/", [UserController::class, "index"]);
+        Route::get("/create", [UserController::class, "create"]);
+        Route::post("/post", [UserController::class, "store"]);
+        Route::get("/edit", [UserController::class, "edit"]);
+        Route::post("/update", [UserController::class, "update"]);
+        Route::get("/delete", function () {
+            return view('delete');
         });
-        Route::post("/post", function () {
-            return view('store');
-        });
-        Route::get("/edit", function () {
-            return view('edit');
-        });
-        Route::post("/update", function () {
-            return view('update');
-        });
+    });
+
+    Route::group(["prefix" => "/category"], function () {
+        Route::get("/", [CategoryController::class, "index"]);
+        Route::get("/create", [CategoryController::class, "create"]);
+        Route::post("/post", [CategoryController::class, "store"]);
+        Route::get("/edit", [CategoryController::class, "edit"]);
+        Route::post("/update", [CategoryController::class, "update"]);
         Route::get("/delete", function () {
             return view('delete');
         });
