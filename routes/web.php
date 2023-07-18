@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\Auth\AuthController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\User\UserController;
@@ -24,13 +25,9 @@ Route::get('/', function () {
 
 Route::get('/test', [TestController::class, "test"]);
 
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/login', [AuthController::class, "getLogin"]);
 
-Route::post('/login', function () {
-    return view('login');
-});
+Route::post('/login', [AuthController::class, "postLogin"]);
 
 Route::group(["prefix" => "/admin"], function () {
     Route::get("/", [AdminController::class, "index"]);

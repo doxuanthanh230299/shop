@@ -10,22 +10,22 @@ class CategoryController extends Controller
     //
     public function index()
     {
-        return view('backend.category.listcategory');
+        return view('backend.categories.listcategory');
     }
     public function create()
     {
-        return view('backend.category.addcategory');
+        return view('backend.categories.addcategory');
     }
     public function store()
     {
-        return view('backend.category.addcategory');
+        return view('backend.categories.addcategory');
     }
     public function edit()
     {
-        return view('backend.category.editcategory');
+        return view('backend.categories.editcategory');
     }
     public function update()
     {
-        return view('backend.category.editcategory');
+        return view('backend.categories.editcategory');
     }
 }

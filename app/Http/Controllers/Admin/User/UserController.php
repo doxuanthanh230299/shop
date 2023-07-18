@@ -10,22 +10,22 @@ class UserController extends Controller
     //
     public function index()
     {
-        return view('backend.user.listuser');
+        return view('backend.users.listuser');
     }
     public function create()
     {
-        return view('backend.user.adduser');
+        return view('backend.users.adduser');
     }
     public function store()
     {
-        return view('backend.user.adduser');
+        return view('backend.users.adduser');
     }
     public function edit()
     {
-        return view('backend.user.edituser');
+        return view('backend.users.edituser');
     }
     public function update()
     {
-        return view('backend.user.edituser');
+        return view('backend.users.edituser');
     }
 }
