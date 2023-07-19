@@ -24,16 +24,14 @@ Route::get('/', function () {
 });
 
 Route::get('/test', [TestController::class, "test"]);
+Route::post('/test', [TestController::class, "test1"]);
 
-Route::get('/login', [AuthController::class, "getLogin"]);
+Route::get('/login', [AuthController::class, "getLogin"])->middleware("checklogin");
+Route::post('/login', [AuthController::class, "postLogin"])->middleware("checklogin");
 
-Route::post('/login', [AuthController::class, "postLogin"]);
-
-Route::group(["prefix" => "/admin"], function () {
+Route::group(["prefix" => "/admin", "middleware" => "checkadmin"], function () {
     Route::get("/", [AdminController::class, "index"]);
-    Route::get("/logout", function () {
-        return view('logout');
-    });
+    Route::get("/logout", [AdminController::class, "logout"]);
     Route::group(["prefix" => "/product"], function () {
         Route::get("/", [ProductController::class, "index"]);
         Route::get("/create", [ProductController::class, "create"]);

@@ -1,1 +1,1 @@
-{{ $course1 }} {{$course2}} {{$course3}}
+<h1>{{ session('alert') }}</h1>

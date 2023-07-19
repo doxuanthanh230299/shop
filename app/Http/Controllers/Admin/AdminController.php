@@ -12,4 +12,9 @@ class AdminController extends Controller
     {
         return view('backend/index');
     }
+    public function logout(Request $request)
+    {
+        $request->session()->forget('email');
+        return redirect('/login');
+    }
 }
