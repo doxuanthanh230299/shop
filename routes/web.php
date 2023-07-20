@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Auth\AuthController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\User\UserController;
+use App\Http\Controllers\Admin\Order\OrderController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
@@ -60,6 +61,13 @@ Route::group(["prefix" => "/admin", "middleware" => "checkadmin"], function () {
         Route::post("/post", [CategoryController::class, "store"]);
         Route::get("/edit", [CategoryController::class, "edit"]);
         Route::post("/update", [CategoryController::class, "update"]);
+        Route::get("/delete", function () {
+            return view('delete');
+        });
+    });
+
+    Route::group(["prefix" => "/order"], function () {
+        Route::get("/", [OrderController::class, "index"]);
         Route::get("/delete", function () {
             return view('delete');
         });
