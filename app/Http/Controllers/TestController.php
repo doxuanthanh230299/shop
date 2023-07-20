@@ -9,12 +9,26 @@ class TestController extends Controller
     //
     public function test()
     {
-        $data = [
-            "course1" => "PHP",
-            "course2" => "ReactJs",
-            "course3" => "NodeJs",
-            "course4" => "Laravel",
+        return view('test');
+    }
+
+    public function test2(Request $request)
+    {
+        $request->session()->flash("alert", "Do Thanh");
+    }
+
+    public function test1(Request $request)
+    {
+        $rules = [
+            "email" => "required|email",
+            "password" => "required|min:3|max:6"
         ];
-        return view('test', $data);
+        $messages = [
+            "email.required" => "Email không được để trống!",
+            "email.email" => "Email không hợp lệ",
+            "password.min" => "Password ít nhất 3 kí tự",
+            "password.max" => "Password nhiều nhất 6 kí tự",
+        ];
+        $request->validate($rules, $messages);
     }
 }

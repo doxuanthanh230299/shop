@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CheckAdmin
 {
@@ -16,7 +17,7 @@ class CheckAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!$request->session()->has('email')) {
+        if (Auth::guest()) {
             return redirect('/login');
         }
         return $next($request);

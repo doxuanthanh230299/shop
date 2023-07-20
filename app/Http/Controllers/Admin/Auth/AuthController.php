@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -12,22 +15,14 @@ class AuthController extends Controller
     {
         return view('/backend/login');
     }
-    public function postLogin(Request $request)
+    public function postLogin(LoginRequest $request)
     {
-        $rules = [
-            'email' => "email|required",
-            'password' => 'required|min:3|max:6'
-        ];
-        $messages = [
-            "email.email" => "Email không hợp lệ",
-            "email.required" => "Email không được để trống",
-            "password.required" => 'Password không được để trống',
-            "password.min" => 'Password tối thiểu 3 kí tự',
-            "password.max" => 'Password tối đa 6 kí tự',
-        ];
-        $request->validate($rules, $messages);
-        // return view('/backend/login', );
-        if ($request->email == "dothanh23021999@gmail.com" && $request->password == '123456') {
+        if (Auth::attempt(
+            [
+                "email" => $request->email,
+                "password" => $request->password
+            ]
+        )) {
             $request->session()->put("email", $request->email);
             return redirect('/admin');
         } else {
