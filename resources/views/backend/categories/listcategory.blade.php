@@ -28,12 +28,8 @@
                                 <div class="form-group">
                                     <label for="">Danh mục cha:</label>
                                     <select class="form-control" name="" id="">
-                                        <option>----ROOT----</option>
-                                        <option>Nam</option>
-                                        <option>---|Áo khoác nam</option>
-                                        <option>---|---|Áo khoác nam</option>
-                                        <option>Nữ</option>
-                                        <option>---|Áo khoác nữ</option>
+                                        <option value="0">----ROOT----</option>
+                                        {{ showCategories($categories, 0, '') }}
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -60,7 +56,7 @@
                                 <h3 style="margin: 0;"><strong>Phân cấp Menu</strong></h3>
                                 <div class="vertical-menu">
                                     <div class="item-menu active">Danh mục </div>
-                                    <div class="item-menu"><span>Nam</span>
+                                    {{-- <div class="item-menu"><span>Nam</span>
                                         <div class="category-fix">
                                             <a class="btn-category btn-primary" href="editcategory.html"><i
                                                     class="fa fa-edit"></i></a>
@@ -104,7 +100,8 @@
                                                     class="fas fa-times"></i></i></a>
 
                                         </div>
-                                    </div>
+                                    </div> --}}
+                                    {{ listCategories($categories, 0, ' ') }}
 
                                 </div>
                             </div>
