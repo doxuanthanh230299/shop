@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Slug;
 
 class TestController extends Controller
 {
     //
     public function test()
     {
-        return view('test');
+        Slug::getSlug('á à a');
     }
 
     public function test2(Request $request)
