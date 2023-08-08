@@ -20,7 +20,7 @@
                                     <div class="form-group">
                                         <label>Danh mục</label>
                                         <select name="categories_id" class="form-control">
-                                            {{ showCategories($categories, 0, '') }}
+                                            {{ showCategories($categories, 0, '', '') }}
                                         </select>
                                     </div>
                                     <div class="form-group">

@@ -29,7 +29,7 @@
                                         <label for="">Danh mục cha:</label>
                                         <select class="form-control" name="parent" id="">
                                             <option value="0">----ROOT----</option>
-                                            {{ showCategories($categories, 0, '') }}
+                                            {{ showCategories($categories, 0, '', '') }}
                                         </select>
                                         @if ($errors->has('parent'))
                                             <div class="alert bg-danger" role="alert">

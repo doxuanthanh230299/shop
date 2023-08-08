@@ -39,22 +39,18 @@ Route::group(["prefix" => "/admin", "middleware" => "checkadmin"], function () {
         Route::get("/create", [ProductController::class, "create"]);
 
         Route::post("/store", [ProductController::class, "store"]);
-        Route::get("/edit", [ProductController::class, "edit"]);
-        Route::post("/update", [ProductController::class, "update"]);
-        Route::get("/delete", function () {
-            return view('delete');
-        });
+        Route::get("/edit/{id}", [ProductController::class, "edit"]);
+        Route::post("/update/{id}", [ProductController::class, "update"]);
+        Route::get("/delete/{id}", [ProductController::class, "delete"]);
     });
 
     Route::group(["prefix" => "/user"], function () {
         Route::get("/", [UserController::class, "index"]);
         Route::get("/create", [UserController::class, "create"]);
         Route::post("/store", [UserController::class, "store"]);
-        Route::get("/edit", [UserController::class, "edit"]);
-        Route::post("/update", [UserController::class, "update"]);
-        Route::get("/delete", function () {
-            return view('delete');
-        });
+        Route::get("/edit/{id}", [UserController::class, "edit"]);
+        Route::post("/update/{id}", [UserController::class, "update"]);
+        Route::get("/delete/{id}", [UserController::class, 'delete']);
     });
 
     Route::group(["prefix" => "/category"], function () {
