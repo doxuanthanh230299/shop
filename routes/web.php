@@ -57,11 +57,9 @@ Route::group(["prefix" => "/admin", "middleware" => "checkadmin"], function () {
         Route::get("/", [CategoryController::class, "index"]);
         Route::get("/create", [CategoryController::class, "create"]);
         Route::post("/store", [CategoryController::class, "store"]);
-        Route::get("/edit", [CategoryController::class, "edit"]);
-        Route::post("/update", [CategoryController::class, "update"]);
-        Route::get("/delete", function () {
-            return view('delete');
-        });
+        Route::get("/edit/{id}", [CategoryController::class, "edit"]);
+        Route::post("/update/{id}", [CategoryController::class, "update"]);
+        Route::get("/delete/{id}", [CategoryController::class, "delete"]);
     });
 
     Route::group(["prefix" => "/order"], function () {
