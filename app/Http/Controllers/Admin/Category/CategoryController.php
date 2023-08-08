@@ -51,6 +51,7 @@ class CategoryController extends Controller
         $id = $request->id;
         $category = Category::find($id);
         $category->delete();
+        $request->session()->flash('alert', 'Đã xóa danh mục!');
         return redirect('admin/category');
     }
 }

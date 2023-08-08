@@ -24,33 +24,36 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-5">
+                            <form action="/admin/category/update/{{ $category['id'] }}" method="post">
+                                <div class="col-md-5">
 
-                                <div class="form-group">
-                                    <label for="">Danh mục cha:</label>
-                                    <select class="form-control" name="parent">
-                                        {{ showCategories($categories, 0, '', $category['parent']) }}
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Tên Danh mục</label>
-                                    <input type="text" class="form-control" name="name" placeholder="Tên danh mục mới"
-                                        value="{{ $category['name'] }}">
+                                    <div class="form-group">
+                                        <label for="">Danh mục cha:</label>
+                                        <select class="form-control" name="parent">
+                                            {{ showCategories($categories, 0, '', $category['parent']) }}
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Tên Danh mục</label>
+                                        <input type="text" class="form-control" name="name"
+                                            placeholder="Tên danh mục mới" value="{{ $category['name'] }}">
 
-                                    @if ($errors->has('name'))
-                                        <div class="alert alert-danger" role="alert">
-                                            <strong>{{ $errors->first('name') }}</strong>
-                                        </div>
-                                        {{-- <div class="alert bg-danger" role="alert">
+                                        @if ($errors->has('name'))
+                                            <div class="alert alert-danger" role="alert">
+                                                <strong>{{ $errors->first('name') }}</strong>
+                                            </div>
+                                            {{-- <div class="alert bg-danger" role="alert">
                                             <svg class="glyph stroked cancel">
                                                 <use xlink:href="#stroked-cancel"></use>
                                             </svg>Tên danh mục đã tồn tại!<a href="#" class="pull-right"><span
                                                     class="glyphicon glyphicon-remove"></span></a>
                                         </div> --}}
-                                    @endif
+                                        @endif
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Sửa danh mục</button>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Sửa danh mục</button>
-                            </div>
+                                {{ csrf_field() }}
+                            </form>
                             <div class="col-md-7">
                                 <h3><strong>Phân cấp Menu</strong></h3>
                                 <div class="vertical-menu">
