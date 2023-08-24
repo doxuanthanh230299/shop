@@ -23,9 +23,9 @@ if (!function_exists('listCategories')) {
             if ($category['parent'] == $parent) {
                 echo '<div class="item-menu"><span>' . $char . $category['name'] . '</span>
                 <div class="category-fix">
-                    <a class="btn-category btn-primary" href="/admin/category/edit/'.$category['id'].'"><i
+                    <a class="btn-category btn-primary" href="/admin/category/edit/' . $category['id'] . '"><i
                             class="fa fa-edit"></i></a>
-                    <a class="btn-category btn-danger" href="/admin/category/delete/'.$category['id'].'"><i
+                    <a class="btn-category btn-danger" href="/admin/category/delete/' . $category['id'] . '"><i
                             class="fas fa-times"></i></i></a>
                 </div>
             </div>';
@@ -33,5 +33,13 @@ if (!function_exists('listCategories')) {
                 listCategories($categories, $new_parent, $char . ' ---| ');
             }
         }
+    }
+}
+
+if (!function_exists('formatCurrency')) {
+    function formatCurrency($amount, $currentSymbol = 'đ', $decimalPlaces = 2, $thousandsSeparator = '.')
+    {
+        $formattedAmount = number_format($amount, $decimalPlaces, ',', $thousandsSeparator);
+        return $formattedAmount . $currentSymbol;
     }
 }
