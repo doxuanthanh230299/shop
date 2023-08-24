@@ -6,6 +6,10 @@ use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\User\UserController;
 use App\Http\Controllers\Admin\Order\OrderController;
+use App\Http\Controllers\Site\Cart\CartController;
+use App\Http\Controllers\Site\SiteController;
+use App\Http\Controllers\Site\Category\CategoryController as SiteCategoryController;
+use App\Http\Controllers\Site\Product\ProductControler as SiteProductController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,13 +24,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/test', [TestController::class, "test"]);
 Route::post('/test', [TestController::class, "test1"]);
 
+// Admin
 Route::get('/login', [AuthController::class, "getLogin"])->middleware("checklogin");
 Route::post('/login', [AuthController::class, "postLogin"])->middleware("checklogin");
 
@@ -68,4 +70,26 @@ Route::group(["prefix" => "/admin", "middleware" => "checkadmin"], function () {
             return view('delete');
         });
     });
+});
+
+// Site
+Route::get('/', [SiteController::class, 'index']);
+Route::get('/ve-chung-toi', [SiteController::class, 'about']);
+Route::get('/lien-he', [SiteController::class, 'contact']);
+Route::get('/danh-muc/{slug}.html', [SiteCategoryController::class, 'index']);
+
+Route::group(['prefix' => '/san-pham'], function () {
+    Route::get('/', [SiteProductController::class, 'shop']);
+    Route::get('/{slug}.html ', [SiteProductController::class, 'details']);
+    Route::get('/tim-kiem', [SiteProductController::class, 'filter']);
+});
+
+Route::group(['prefix' => '/gio-hang'], function () {
+    Route::get('/', [CartController::class, 'cart']);
+    Route::get('/them-hang/{id}', [CartController::class, 'addToCart']);
+    Route::get('/cap-nhat-gio-hang/{id}/{qty}', [CartController::class, 'update']);
+    Route::get('/xoa-hang/{id}', [CartController::class, 'delete']);
+    Route::get('/thanh-toan.html', [CartController::class, 'checkout']);
+    Route::post('/thanh-toan', [CartController::class, 'payment']);
+    Route::get('/hoan-thanh', [CartController::class, 'complete']);
 });
