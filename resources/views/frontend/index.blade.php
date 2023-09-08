@@ -87,7 +87,7 @@
                             <div class="product-img" style="background-image: url(../uploads/{{ $product['image'] }});">
                                 <div class="cart">
                                     <p>
-                                        <span class="addtocart"><a href="cart.html"><i
+                                        <span class="addtocart"><a href="/gio-hang/them-hang/{{$product['id']}}"><i
                                                     class="icon-shopping-cart"></i></a></span>
                                         <span><a href="/san-pham/{{ $product['slug'] }}.html"><i
                                                     class="icon-eye"></i></a></span>
@@ -121,7 +121,7 @@
                                 <p class="tag"><span class="new">New</span></p>
                                 <div class="cart">
                                     <p>
-                                        <span class="addtocart"><a href="cart.html"><i
+                                        <span class="addtocart"><a href="/gio-hang/them-hang/{{$product['id']}}"><i
                                                     class="icon-shopping-cart"></i></a></span>
                                         <span><a href="/san-pham/{{ $product['slug'] }}.html"><i
                                                     class="icon-eye"></i></a></span>

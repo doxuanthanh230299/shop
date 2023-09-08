@@ -21,7 +21,8 @@
                             </li>
                             <li><a href="/ve-chung-toi">Giới thiệu</a></li>
                             <li><a href="/lien-he">Liên hệ</a></li>
-                            <li><a href="/gio-hang"><i class="icon-shopping-cart"></i> Giỏ hàng [0]</a></li>
+                            <li><a href="/gio-hang"><i class="icon-shopping-cart"></i> Giỏ hàng
+                                    [{{ session('totalQuantity') ? session('totalQuantity') : 0 }}]</a></li>
                         </ul>
                     </div>
                 </div>

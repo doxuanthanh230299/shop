@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Site\Cart;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Cart;
 
 class CartController extends Controller
 {
@@ -11,22 +13,42 @@ class CartController extends Controller
 
     public function cart()
     {
-        return view('frontend.cart.cart');
+        $data['cart'] = Cart::getContent();
+        $data['totalQuantity'] =  Cart::getTotalQuantity();
+        $data['totalPrice'] = Cart::getSubTotal();
+        session()->put('totalQuantity', $data['totalQuantity']);
+        return view('frontend.cart.cart', $data);
     }
 
-    public function addToCart()
+    public function addToCart(Request $request)
     {
-        return view('frontend.cart.cart');
+        $product = Product::find($request->id)->toArray();
+        Cart::add([
+            'id' => $product['id'], // inique row ID
+            'name' => $product['name'],
+            'price' => $product['price'],
+            'quantity' => $request->qty ? $request->qty : 1,
+            'attributes' => ['code' => $product['code'], 'image' => $product['image']]
+        ]);
+        return redirect('/gio-hang');
     }
 
-    public function update()
+    public function update($id, $qty)
     {
-        return view('frontend.cart.cart');
+        Cart::update($id, [
+            'quantity' => [
+                'relative' => false,
+                'value' => $qty
+            ],
+        ]);
+        session(['totalQuantity' => Cart::getTotalQuantity()]);
+        return Cart::getSubTotal();
     }
 
-    public function delete()
+    public function delete($id)
     {
-        return view('frontend.cart.cart');
+        Cart::remove($id);
+        return 'success';
     }
 
     public function checkout()
@@ -38,7 +60,7 @@ class CartController extends Controller
     {
         return view('frontend.cart.cart');
     }
-    
+
     public function complete()
     {
         return view('frontend.cart.cart');

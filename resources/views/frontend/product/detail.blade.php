@@ -17,8 +17,8 @@
                                 </div>
                             </div>
                             <div class="col-md-7">
-                                <form action="product/AddCart" method="post">
-
+                                <form action="/gio-hang/them-hang/{{ $product['id'] }}/" method="get">
+                                    {{ csrf_field() }}
                                     <div class="desc">
                                         <h3>{{ $product['name'] }}</h3>
                                         <p class="price">
@@ -39,9 +39,8 @@
                                                             <i class="icon-minus2"></i>
                                                         </button>
                                                     </span>
-                                                    <input type="text" id="quantity" name="quantity"
-                                                        class="form-control input-number" value="1" min="1"
-                                                        max="100">
+                                                    <input type="text" id="quantity" name="qty" value="1"
+                                                        class="form-control input-number" min="1" max="100">
                                                     <span class="input-group-btn">
                                                         <button type="button" class="quantity-right-plus btn"
                                                             data-type="plus" data-field="">
@@ -113,4 +112,39 @@
         </div>
     </div>
     <!-- end main -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <!-- jQuery Easing -->
+    <script src="js/jquery.easing.1.3.js"></script>
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Waypoints -->
+    <script src="js/jquery.waypoints.min.js"></script>
+    <!-- Flexslider -->
+    <script src="js/jquery.flexslider-min.js"></script>
+
+    <script src="js/owl.carousel.min.js"></script>
+    <!-- Magnific Popup -->
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/magnific-popup-options.js"></script>
+
+    <!-- Stellar Parallax -->
+    <script src="js/jquery.stellar.min.js"></script>
+    <!-- Main -->
+    <script src="js/main.js"></script>
+    <script>
+        var quantity = 1;
+        $('.quantity-right-plus').click(function() {
+            var quantity = parseInt($('#quantity').val());
+            $('#quantity').val(quantity + 1);
+        });
+
+        $('.quantity-left-minus').click(function(e) {
+            var quantity = parseInt($('#quantity').val());
+            if (quantity > 1) {
+                $('#quantity').val(quantity - 1);
+            }
+        });
+    </script>
 @stop

@@ -13,7 +13,7 @@
                                         style="background-image: url(../uploads/{{ $product['image'] }});">
                                         <div class="cart">
                                             <p>
-                                                <span class="addtocart"><a href="cart.html"><i
+                                                <span class="addtocart"><a href="/gio-hang/them-hang/{{$product['id']}}"><i
                                                             class="icon-shopping-cart"></i></a></span>
                                                 <span><a href="detail.html"><i class="icon-eye"></i></a></span>
                                             </p>
@@ -67,7 +67,9 @@
                                                             role="tabpanel" aria-labelledby="headingOne">
                                                             <div class="panel-body">
                                                                 <ul>
-                                                                    <li><a href="/danh-muc/{{$child_item['slug']}}.html">{{ $child_item['name'] }}</a></li>
+                                                                    <li><a
+                                                                            href="/danh-muc/{{ $child_item['slug'] }}.html">{{ $child_item['name'] }}</a>
+                                                                    </li>
                                                                 </ul>
                                                             </div>
                                                         </div>
