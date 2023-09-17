@@ -101,7 +101,7 @@
                                     <div class="grand-total">
                                         <p><span><strong>Tổng cộng:</strong></span> <span
                                                 class="priceTotal">{{ $totalPrice }} đ</span></p>
-                                        <a href="checkout.html" class="btn btn-primary">Thanh toán <i
+                                        <a href="/gio-hang/thanh-toan.html" class="btn btn-primary">Thanh toán <i
                                                 class="icon-arrow-right-circle"></i></a>
                                     </div>
                                 </div>

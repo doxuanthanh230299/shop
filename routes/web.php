@@ -91,5 +91,5 @@ Route::group(['prefix' => '/gio-hang'], function () {
     Route::get('/xoa-hang/{id}', [CartController::class, 'delete']);
     Route::get('/thanh-toan.html', [CartController::class, 'checkout']);
     Route::post('/thanh-toan', [CartController::class, 'payment']);
-    Route::get('/hoan-thanh', [CartController::class, 'complete']);
+    Route::get('/hoan-thanh/{id}', [CartController::class, 'complete']);
 });

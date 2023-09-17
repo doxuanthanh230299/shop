@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Site\Cart;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Models\OrderProduct;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Cart;
@@ -53,16 +55,45 @@ class CartController extends Controller
 
     public function checkout()
     {
-        return view('frontend.cart.cart');
+        $data['cart'] = Cart::getContent();
+        $data['totalQuantity'] =  Cart::getTotalQuantity();
+        $data['totalPrice'] = Cart::getSubTotal();
+        session()->put('totalQuantity', $data['totalQuantity']);
+        return view('frontend.cart.checkout', $data);
     }
 
-    public function payment()
+    public function payment(Request $request)
     {
-        return view('frontend.cart.cart');
+        $order = new Order();
+        $order->name = $request->name;
+        $order->address = $request->address;
+        $order->email = $request->email;
+        $order->phone = $request->phone;
+        $order->state = 0;
+        $order->total = Cart::getTotalQuantity();
+        $order->save();
+        foreach (Cart::getContent() as $product) {
+            $orderProduct = new OrderProduct();
+            $orderProduct->name = $product->name;
+            $orderProduct->price = $product->price;
+            $orderProduct->quantity = $product->quantity;
+            $orderProduct->code = $product->attributes->code;
+            $orderProduct->image = $product->attributes->image;
+            $orderProduct->order_id = $order->id;
+            $orderProduct->save();
+        };
+        return redirect('/gio-hang/hoan-thanh/' . $order->id);
     }
 
-    public function complete()
+    public function complete($id)
     {
-        return view('frontend.cart.cart');
+        $data['info'] = Order::find($id);  
+        $data['cart'] = OrderProduct::where('order_id', $id)->get(); 
+        if ($data['info']!=null) {
+            Cart::clear();
+            return view('frontend.cart.complete', $data);
+        } else {
+            return abort(404);
+        }
     }
 }

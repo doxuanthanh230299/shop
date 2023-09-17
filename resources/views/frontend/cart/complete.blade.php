@@ -62,19 +62,19 @@
                         <tbody>
                             <tr>
                                 <td>Họ Tên</td>
-                                <td>: Nguyễn Văn A</td>
+                                <td>: {{ $info->name }}</td>
                             </tr>
                             <tr>
                                 <td>Số điện thoại</td>
-                                <td>: 0123 456 789</td>
+                                <td>: {{ $info->phone }}</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>: {{ $info->email }}</td>
                             </tr>
                             <tr>
                                 <td>Địa chỉ</td>
-                                <td>: Số nhà B8A ngõ 18 đường Võ Văn Dũng - Hoàng Cầu - Đống Đa </td>
-                            </tr>
-                            <tr>
-                                <td>Thành Phố</td>
-                                <td>: Hà Nội</td>
+                                <td>: {{ $info->address }} </td>
                             </tr>
                         </tbody>
                     </table>
@@ -85,19 +85,19 @@
                         <tbody>
                             <tr>
                                 <td>Họ Tên</td>
-                                <td>: Nguyễn Văn A</td>
+                                <td>: {{ $info->name }}</td>
                             </tr>
                             <tr>
                                 <td>Số điện thoại</td>
-                                <td>: 0123 456 789</td>
+                                <td>: {{ $info->phone }}</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>: {{ $info->email }}</td>
                             </tr>
                             <tr>
                                 <td>Địa chỉ</td>
-                                <td>: Số nhà B8A ngõ 18 đường Võ Văn Dũng - Hoàng Cầu - Đống Đa </td>
-                            </tr>
-                            <tr>
-                                <td>Thành Phố</td>
-                                <td>: Hà Nội</td>
+                                <td>: {{ $info->address }} </td>
                             </tr>
                         </tbody>
                     </table>
@@ -116,25 +116,22 @@
 
                                     <div class="col-md-4 offset-md-4" align='right'>TỔNG CỘNG</div>
                                 </div>
+                                @foreach ($cart as $product)
                                 <div class="list-row d-flex justify-content-between">
-                                    <div class="col-md-4">Sản phẩm 1 : color:red ,size:XL</div>
-                                    <div class="col-md-4" align='right'>x 02</div>
-                                    <div class="col-md-4" align='right'>₫ 720.000</div>
+                                    <div class="col-md-4"> {{$product->name}}</div>
+                                    <div class="col-md-4" align='right'>x {{$product->quantity}}</div>
+                                    <div class="col-md-4" align='right'>₫ {{$product->price}}</div>
 
                                 </div>
+                                @endforeach
 
-                                <div class="list-row d-flex justify-content-between">
-                                    <div class="col-md-4">Sản phẩm 1 : color:red ,size:XL</div>
-                                    <div class="col-md-4" align='right'>x 02</div>
-                                    <div class="col-md-4" align='right'>₫ 720.000</div>
-
-                                </div>
+                                
 
                                 <div class="list-row border-bottom-0 d-flex justify-content-between">
                                     <div class="col-md-4">
                                         <h6>Tổng</h6>
                                     </div>
-                                    <div class="col-md-4 offset-md-4" align='right'>₫ 1.420.000</div>
+                                    <div class="col-md-4 offset-md-4" align='right'>₫ {{$info->total}}</div>
                                 </div>
                             </div>
                         </div>
