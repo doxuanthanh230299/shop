@@ -14,6 +14,8 @@ class Order extends Model
         "address",
         "phone",
         "state",
+        "total",
+        "updated_at"
     ];
 
     public function order()

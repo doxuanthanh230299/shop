@@ -77,7 +77,10 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Thông tin</label>
-                                        <textarea name="info" style="width: 100%;height: 100px;">{{ $product['info'] }}</textarea>
+                                        <textarea id="info" name="info" style="width: 100%;height: 100px;">{{ $product['info'] }}</textarea>
+                                        <script>
+                                            CKEDITOR.replace("info")
+                                        </script>
                                     </div>
                                 </div>
                             </div>
@@ -86,6 +89,9 @@
                                     <div class="form-group">
                                         <label>Miêu tả</label>
                                         <textarea id="editor" name="describer" style="width: 100%;height: 100px;">{{ $product['describer'] }}</textarea>
+                                        <script>
+                                            CKEDITOR.replace("describer")
+                                        </script>
                                     </div>
                                     <button class="btn btn-success" name="add-product" type="submit">Sửa sản phẩm</button>
                                     <button class="btn btn-danger" type="reset">Huỷ bỏ</button>

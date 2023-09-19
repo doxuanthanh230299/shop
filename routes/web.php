@@ -66,6 +66,8 @@ Route::group(["prefix" => "/admin", "middleware" => "checkadmin"], function () {
 
     Route::group(["prefix" => "/order"], function () {
         Route::get("/", [OrderController::class, "index"]);
+        Route::get("/{id}", [OrderController::class, "detail"]);
+        Route::get("/update/{id}", [OrderController::class, "update"]);
         Route::get("/delete", function () {
             return view('delete');
         });

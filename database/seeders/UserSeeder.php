@@ -26,9 +26,9 @@ class UserSeeder extends Seeder
                 'level' => 1
             ],
             [
-                'fullname' => 'Vietpro Academy', 
+                'fullname' => 'Đỗ Xuân Thành', 
                 'password'=>bcrypt("123456"), 
-                'email' => 'vietpro.edu.vn@gmail.com', 
+                'email' => 'dothanh2302999@gmail.com', 
                 'phone' => '0123456789', 
                 'address'=>'Hà Nội',
                 'level' => 1

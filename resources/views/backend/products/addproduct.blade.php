@@ -82,7 +82,10 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Thông tin</label>
-                                        <textarea name="info" style="width: 100%;height: 100px;"></textarea>
+                                        <textarea id="info" name="info" style="width: 100%;height: 100px;"></textarea>
+                                        <script>
+                                            CKEDITOR.replace('info')
+                                        </script>
                                     </div>
                                     @if ($errors->has('info'))
                                         <div class="alert alert-danger">
@@ -99,6 +102,9 @@
                                     <div class="form-group">
                                         <label>Miêu tả</label>
                                         <textarea id="editor" name="describer" style="width: 100%;height: 100px;"></textarea>
+                                        <script>
+                                            CKEDITOR.replace('describer');
+                                        </script>
                                         @if ($errors->has('describer'))
                                             <div class="alert alert-danger">
                                                 {{ $errors->first('describer') }}
