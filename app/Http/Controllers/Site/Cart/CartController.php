@@ -70,7 +70,7 @@ class CartController extends Controller
         $order->email = $request->email;
         $order->phone = $request->phone;
         $order->state = 0;
-        $order->total = Cart::getTotalQuantity();
+        $order->total = Cart::getSubTotal();
         $order->save();
         foreach (Cart::getContent() as $product) {
             $orderProduct = new OrderProduct();
